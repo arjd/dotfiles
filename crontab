@@ -1,0 +1,5 @@
+# upgrade brew, formulas, and outdated packages
+@daily brew update && brew upgrade && brew outdated -q | xargs brew upgrade
+@weekly cd /dotfiles && git fetch && git pull
+@weekly cd /dotfiles && git add . && git commit -m `printf "%s" $(date)` && git push
+@weekly for f in $ZSH/custom/plugins; do cd $f && git fetch && git pull; done
