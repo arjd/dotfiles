@@ -14,7 +14,6 @@ POWERLEVEL9K_IGNORE_TERM_COLORS=true
 # tmux plugin settings
 ZSH_TMUX_FIXTERM=true
 
-
 # functions
 function f() { # recursively find path by name
     find . -iname "*$1*" ${@:2}
