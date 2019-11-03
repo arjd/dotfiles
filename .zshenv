@@ -8,8 +8,8 @@ if [ -f ~/.env ]; then
 fi
 
 # npm exports
-export NVM_DIR="/Users/dornford/.nvm"
+export NVM_DIR=$HOME/.nvm
 
 # zsh exports
-export ZSH="/Users/dornford/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 export GREP2AWK="^G^A"
