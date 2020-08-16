@@ -1,29 +1,22 @@
 # see ~/.zshenv for environment-specific settings
 
-# jenv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
-# pass/gopass
-alias pass=gopass
-
-# nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
-
-# homebrew
+# brew general installs, gnu-time, coreutils, curl, and openssl
+brewprefix=$(dirname $(which brew))/opt
+export PATH="/usr/local/opt/gnu-time/libexec/gnubin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export PATH="$brewprefix/coreutils/bin:$PATH"
+export PATH="$brewprefix/curl-openssl/bin:$PATH"
 
 # zsh-specific settings
 ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(gitfast git-extras aws common-aliases emoji nvm sudo tmux grep2awk zsh-syntax-highlighting)
+plugins=(gitfast git-extras tmux aws common-aliases zsh-syntax-highlighting sandboxd)
 source $ZSH/oh-my-zsh.sh
-source $(brew --prefix)/opt/git-extras/share/git-extras/git-extras-completion.zsh
 
 # powerlevel9k settings
 POWERLEVEL9K_IGNORE_TERM_COLORS=true
 
 # tmux plugin settings
-ZSH_TMUX_FIXTERM=true
+ZSH_TMUX_FIXTERM=tru
 
 # computer-specific functions
 if [ -f ~/.functions ]; then
@@ -55,8 +48,12 @@ if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
 
+# pass/gopass
+alias pass=gopass
+
 # productivity aliases 
 alias ls='ls -lah'
+
 
 #### stuff to do at start of new session  ####
 # loading private key
@@ -71,21 +68,4 @@ fi
 
 # import pure styling for powerlevel10k
 source ~/.oh-my-zsh/custom/themes/powerlevel10k/config/p10k-pure.zsh
-#clear
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-export PATH=/usr/local/anaconda3/bin:$PATH
