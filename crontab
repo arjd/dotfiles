@@ -1,6 +1,6 @@
 SHELL=/bin/zsh
 # upgrade brew, formulas, and outdated packages
 @daily $SHELL -c 'brew update && brew upgrade && brew outdated -q | xargs brew upgrade'
-@weekly $SHELL -c 'cd /dotfiles && git fetch && git pull'
-@weekly $SHELL -c 'cd /dotfiles && git add . && git commit -m "`date`: weekly update" && git push'
+@weekly $SHELL -c 'cd /.dotfiles && git fetch && git pull'
+@weekly $SHELL -c 'cd /.dotfiles && git add . && git commit -m "`date`: weekly update" && git push'
 @weekly $SHELL -c 'for f in $ZSH/custom/*/*; do if [[ -d $f ]]; then echo $f && cd $f && git fetch && git pull; fi; done'
