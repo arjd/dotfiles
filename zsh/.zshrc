@@ -1,11 +1,12 @@
 # see ~/.zshenv for environment-specific settings
 
-# brew general installs, gnu-time, coreutils, curl, and openssl
+# brew general installs, gnu-time, coreutils, curl, openssl, pipx
 brewprefix=$(dirname $(which brew))/opt
 export PATH="/usr/local/opt/gnu-time/libexec/gnubin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$brewprefix/coreutils/bin:$PATH"
 export PATH="$brewprefix/curl-openssl/bin:$PATH"
+export PATH="$PATH:/Users/dornford/.local/bin"
 
 # zsh-specific settings
 ZSH_THEME="powerlevel10k/powerlevel10k"

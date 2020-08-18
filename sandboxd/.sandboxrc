@@ -1,0 +1,18 @@
+sandbox_init_nodenv(){
+ eval "$(nodenv init -)"
+}
+
+sandbox_init_jenv() {
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init > /dev/null 2>&1)"
+}
+
+sandbox_init_pyenv() {
+  eval "$(pyenv init -)"
+}
+
+sandbox_hook nodenv node
+sandbox_hook jenv java javac javadoc javap javapackager javaws javafxpackager mvn
+sandbox_hook pyenv python
+sandbox_hook pyenv pipx
+sandbox_hook pyenv pip
