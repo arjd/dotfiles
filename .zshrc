@@ -25,10 +25,10 @@ POWERLEVEL9K_IGNORE_TERM_COLORS=true
 # tmux plugin settings
 ZSH_TMUX_FIXTERM=tru
 
-# computer-specific functions
-if [ -f ~/.functions ]; then
-  source ~/.functions
-fi
+# computer-specific extras, plus aliases and functions
+source ~/.extras 2>/dev/null
+source ~/.functions 2>/dev/null
+source ~/.aliases 2>/dev/null
 
 # functions
 function f() { # recursively find path by name
@@ -49,11 +49,6 @@ function start_agent { # loads private key into every new session
     . "${SSH_ENV}" > /dev/null
     /usr/bin/ssh-add
 }
-
-# computer-specific aliases
-if [ -f ~/.aliases ]; then
-    source ~/.aliases
-fi
 
 # pass/gopass
 alias pass=gopass
