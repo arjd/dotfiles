@@ -59,8 +59,13 @@ fi
 alias pass=gopass
 
 # productivity aliases 
-alias ls='ls -lah'
+alias ll='ls -ahlTF'
 
+# get file permissions in octal (i.e. 0755)
+alias perms="stat -f '%A %a %N' *"
+
+# dotfiles bare repo
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 #### stuff to do at start of new session  ####
 # loading private key
@@ -75,4 +80,3 @@ fi
 
 # import pure styling for powerlevel10k
 source ~/.oh-my-zsh/custom/themes/powerlevel10k/config/p10k-pure.zsh
-
