@@ -1,1 +1,9 @@
+# prevent circular conflict with dotfiles bare repo
 .dotfiles
+
+# pyenv and nodenv local version files
+.python-version
+.node-version
+
+# poetry
+pyproject.toml
