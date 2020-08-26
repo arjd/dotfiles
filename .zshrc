@@ -54,13 +54,25 @@ function start_agent { # loads private key into every new session
 alias pass=gopass
 
 # productivity aliases 
-alias ll='ls -ahlTF'
+alias ll='ls -lhATF'
 
 # get file permissions in octal (i.e. 0755)
 alias perms="stat -f '%A %a %N' *"
 
 # dotfiles bare repo
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+
+# Easier navigation: .., ..., ~ and -
+alias ..="cd .."
+alias cd..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
+
+# use coreutils `ls` if possible…
+hash gls >/dev/null 2>&1 || alias gls="ls"
 
 #### stuff to do at start of new session  ####
 # loading private key
