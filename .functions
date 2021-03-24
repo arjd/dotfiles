@@ -76,3 +76,12 @@ starttransfer:  %{time_starttransfer}s\n\
 -------------------------\n\
         total:  %{time_total}s\n" "$@"
 }
+
+# Convert QuickTime Player Screen Recording into .gif
+function movtogif () {                                                
+  tempfile=.mov-to-gif-$(date +"%s").png
+  ffmpeg -i $1 -vf "scale=640:-2" "${1%.mov}-resized.mov"
+  ffmpeg -stats -y -i "${1%.mov}-resized.mov" -vf fps=10,palettegen $tempfile
+  ffmpeg -stats -i "${1%.mov}-resized.mov" -i $tempfile -filter_complex "fps=10,paletteuse" "${1%.mov}.gif"
+  rm -f $tempfile "${1%.mov}-resized.mov"
+}
