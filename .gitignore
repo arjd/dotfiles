@@ -7,3 +7,9 @@
 
 # poetry
 pyproject.toml
+poetry.lock
+requirements.txt.save
+
+# vscode
+**/.vscode/**
+**/*.code-workspace
