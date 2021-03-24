@@ -8,11 +8,16 @@ sandbox_init_jenv() {
 }
 
 sandbox_init_pyenv() {
-  eval "$(pyenv init -)"
+  [[ "$VIRTUAL_ENV" == "" ]] && eval "$(pyenv init -)" || :
+}
+
+sandbox_init_conda() {
+  eval "$(conda shell.zsh hook)"
 }
 
 sandbox_hook nodenv node
 sandbox_hook jenv java javac javadoc javap javapackager javaws javafxpackager mvn
+sandbox_hook conda conda
 sandbox_hook pyenv python
 sandbox_hook pyenv pipx
 sandbox_hook pyenv pip
