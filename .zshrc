@@ -7,12 +7,17 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="$brewprefix/coreutils/bin:$PATH"
 export PATH="$brewprefix/curl-openssl/bin:$PATH"
 export PATH="$PATH:/Users/dornford/.local/bin"
-# export GOPATH=$HOME/go
-# export GOROOT=/usr/local/opt/go/libexec
-# export NODE_PATH=`which node`
+export PATH="$brewprefix/coreutils/bin:$PATH"
+export PATH="$brewprefix/fzf:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/opt/go/libexec
 # export LATEX_PATH=/Library/TeX/texbin
 # export DOTNET_PATH=/usr/local/share/dotnet:~/.dotnet/tools
-# export PATH=$NODE_PATH:$PATH:$GOPATH/bin:$GOROOT/bin
+export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
+
+# zoxide
+eval "$(zoxide init zsh)"
 
 # zsh-specific settings
 ZSH_THEME="powerlevel10k/powerlevel10k"
