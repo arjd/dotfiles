@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# gopass as pass
+alias pass=gopass
+
+# productivity aliases 
+alias ll='ls -lhATF'
+
+# get file permissions in octal (i.e. 0755)
+alias perms="stat -f '%A %a %N' *"
+
+# dotfiles bare repo management
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+
+# Easier navigation: .., ..., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~"
+alias -- -="cd -"

@@ -10,6 +10,16 @@ pyproject.toml
 poetry.lock
 requirements.txt.save
 
+# virtualenv
+**/*v*env/**
+
+# python binary artifacts
+**/__pycache__/**
+**/*.egg-info/**
+
 # vscode
 **/.vscode/**
 **/*.code-workspace
+
+# macOS
+.DS_Store

@@ -1,22 +1,29 @@
-# see ~/.zshenv for environment-specific settings
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-# brew general installs, gnu-time, coreutils, curl, openssl, pipx
+# brew general installs (sbin), gnu-time, coreutils, curl, openssl, pipx, fzf, go binaries
+# NOTE: this is _much_ faster than `brew --prefix`
 brewprefix=$(dirname $(which brew))/opt
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/opt/go/libexec
 export PATH="/usr/local/opt/gnu-time/libexec/gnubin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$brewprefix/coreutils/bin:$PATH"
 export PATH="$brewprefix/curl-openssl/bin:$PATH"
-export PATH="$PATH:/Users/dornford/.local/bin"
-export PATH="$brewprefix/coreutils/bin:$PATH"
 export PATH="$brewprefix/fzf:$PATH"
+export PATH="$PATH:/Users/dornford/.local/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
-# export LATEX_PATH=/Library/TeX/texbin
-# export DOTNET_PATH=/usr/local/share/dotnet:~/.dotnet/tools
 export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
 
-# zoxide
+# gcloud
+source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+
+# zoxide, i.e. a more intuitive cd command
 eval "$(zoxide init zsh)"
 
 # zsh-specific settings
@@ -30,56 +37,21 @@ POWERLEVEL9K_IGNORE_TERM_COLORS=true
 # tmux plugin settings
 ZSH_TMUX_FIXTERM=tru
 
-# computer-specific extras, plus aliases and functions
+# load computer-specific extras
+# use ~/.zshenv for environment-specific settings
 source ~/.extras 2>/dev/null
+
+# load aliases and functions
 source ~/.functions 2>/dev/null
 source ~/.aliases 2>/dev/null
-
-# functions
-function f() { # recursively find path by name
-    find . -iname "*$1*" ${@:2}
-}
-function r() { # recursively grep through files
-    grep "$1" ${@:2} -R .
-}
-function mkcd() { # make new dir and cd into it
-    mkdir -p "$@" && cd "$_";
-}
-function start_agent { # loads private key into every new session
-    echo "Initializing new SSH agent..."
-    # spawn ssh-agent
-    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    echo succeeded
-    chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add
-}
-
-# pass/gopass
-alias pass=gopass
-
-# productivity aliases 
-alias ll='ls -lhATF'
-
-# get file permissions in octal (i.e. 0755)
-alias perms="stat -f '%A %a %N' *"
-
-# dotfiles bare repo
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-
-# Easier navigation: .., ..., ~ and -
-alias ..="cd .."
-alias cd..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ~="cd ~" # `cd` is probably faster to type though
-alias -- -="cd -"
 
 # use coreutils `ls` if possible…
 hash gls >/dev/null 2>&1 || alias gls="ls"
 
+
+
 #### stuff to do at start of new session  ####
+
 # loading private key
 if [ -f "${SSH_ENV}" ]; then
      . "${SSH_ENV}" > /dev/null
