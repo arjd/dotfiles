@@ -6,8 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # brew general installs (sbin), gnu-time, coreutils, curl, openssl, pipx, fzf, go binaries
-# NOTE: this is _much_ faster than `brew --prefix`
-brewprefix=$(dirname $(which brew))/opt
+brewprefix=$(dirname $(which brew))/opt # NOTE: this is _much_ faster than `brew --prefix`
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/opt/go/libexec
 export PATH="/usr/local/opt/gnu-time/libexec/gnubin:$PATH"
