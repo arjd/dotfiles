@@ -27,7 +27,7 @@ eval "$(zoxide init zsh)"
 
 # zsh-specific settings
 ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(gitfast git-extras tmux aws common-aliases zsh-syntax-highlighting sandboxd)
+plugins=(gitfast git-extras tmux aws common-aliases zsh-syntax-highlighting sandboxd autoupdate)
 source $ZSH/oh-my-zsh.sh
 
 # powerlevel9k settings
