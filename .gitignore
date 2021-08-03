@@ -17,6 +17,9 @@ requirements.txt.save
 **/__pycache__/**
 **/*.egg-info/**
 
+# node.js dependencies
+**/node_modules/**
+
 # vscode
 **/.vscode/**
 **/*.code-workspace
