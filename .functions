@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Test existence of file -- supports glob
+exists() {
+    [ -e "$1" ]
+}
+
 # Recursively find path by name
 function f() {
     find . -iname "*$1*" ${@:2}

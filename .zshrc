@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Tweak shell settings
+setopt +o nomatch
+
 # brew general installs (sbin), gnu-time, coreutils, curl, openssl, pipx, fzf, go binaries
 brewprefix=$(dirname $(which brew))/opt # NOTE: this is _much_ faster than `brew --prefix`
 export GOPATH=$HOME/go
