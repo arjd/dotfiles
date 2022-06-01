@@ -20,7 +20,7 @@ function mkcd() {
     mkdir -p "$@" && cd "$_";
 }
 
- # Loads private key into every new login session
+# Loads private key into every new login session
 function start_agent {
     echo "Initializing new SSH agent..."
     # spawn ssh-agent
@@ -127,4 +127,9 @@ function kube-toggle() {
     zle push-input
     zle accept-line
   fi
+}
+
+# Write file to JSON format
+jsonify() {
+    python3 -c 'import sys, json; print(json.dumps(sys.stdin.read()))' < $1
 }
