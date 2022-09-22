@@ -18,6 +18,3 @@ sandbox_init_conda() {
 sandbox_hook nodenv node
 sandbox_hook jenv java javac javadoc javap javapackager javaws javafxpackager mvn
 sandbox_hook conda conda
-sandbox_hook pyenv python
-sandbox_hook pyenv pipx
-sandbox_hook pyenv pip
