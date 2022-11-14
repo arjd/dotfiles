@@ -36,7 +36,7 @@ fi
 # Brewfile
 export HOMEBREW_BREWFILE=~/.brewfile
 
-# brew general installs (sbin), gnu-time, coreutils, curl, openssl, pipx, fzf, go binaries, squashfuse
+# brew general installs (sbin), gnu-time, coreutils, curl, openssl, pipx, fzf, go binaries, squashfuse, java
 eval $(/opt/homebrew/bin/brew shellenv)
 brewprefix=$(dirname $(dirname $(which brew)))
 export GOPATH=$HOME/go
@@ -50,11 +50,12 @@ export PATH="$PATH:/Users/dornford/.local/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
 export PATH="$PATH:$brewprefix/Cellar/squashfuse/0.1.104/bin"
+export PATH="$PATH:$brewprefix/openjdk/bin"
 
 # oh-my-zsh theme, plugin, and load
+source $ZSH/oh-my-zsh.sh
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(gitfast git-extras tmux aws common-aliases zsh-syntax-highlighting autoupdate sandboxd)
-source $ZSH/oh-my-zsh.sh
 
 # gcloud
 source $brewprefix/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
@@ -80,7 +81,10 @@ source ~/.aliases 2>/dev/null
 # use coreutils `ls` if possible…
 hash gls >/dev/null 2>&1 || alias gls="ls"
 
-
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 #### stuff to do at start of new session  ####
 
@@ -95,10 +99,12 @@ else
 fi
 
 # import pure styling for powerlevel10k
-source ~/.oh-my-zsh/custom/themes/powerlevel10k/config/p10k-pure.zsh
+source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # Profiling
 # unsetopt XTRACE
 # exec 2>&3 3>&-
 # zprof
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

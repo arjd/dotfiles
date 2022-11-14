@@ -6,8 +6,7 @@
 .node-version
 
 # poetry
-pyproject.toml
-poetry.lock
+poetry.toml
 requirements.txt.save
 
 # virtualenv
