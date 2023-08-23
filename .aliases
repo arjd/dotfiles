@@ -12,6 +12,10 @@ alias perms="stat -f '%A %a %N' *"
 # dotfiles bare repo management
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
+if [[ $OSTYPE == darwin* ]]; then
+alias flush='dscacheutil -flushcache'
+fi
+
 # Easier navigation: .., ..., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
