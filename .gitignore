@@ -22,6 +22,7 @@ requirements.txt.save
 # vscode
 **/.vscode/**
 **/*.code-workspace
+**/.devcontainer
 
 # macOS
 .DS_Store
